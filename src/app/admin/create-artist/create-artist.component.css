@@ -49,3 +49,18 @@ button[matChipRemove] {
 button[matChipRemove]:hover {
   color: white;
 }
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+}
+
+.artist-card {
+  position: relative;
+}
+

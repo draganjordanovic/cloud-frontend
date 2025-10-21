@@ -16,6 +16,8 @@ export class CreateArtistComponent {
   genres: string[] = [];
 
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  isLoading = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -62,18 +64,21 @@ export class CreateArtistComponent {
       return;
     }
 
-    const payload = this.artistForm.value;
+    this.isLoading = true;
 
+    const payload = this.artistForm.value;
     this.artistService.createArtist(payload).subscribe({
       next: () => {
+        this.isLoading = false;
         this.snackBar.open('Artist added successfully!', 'Close', { duration: 2500 });
         this.artistForm.reset();
       },
       error: () => {
+        this.isLoading = false;
         this.snackBar.open('Error while adding artist.', 'Close', { duration: 3000 });
       }
     });
-}
+  }
 
 
 }

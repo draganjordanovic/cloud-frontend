@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { CreateArtistComponent } from './create-artist/create-artist.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatButtonModule,
     MatSnackBarModule,
     MatIconModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressSpinnerModule    
   ]
 })
 export class AdminModule {}

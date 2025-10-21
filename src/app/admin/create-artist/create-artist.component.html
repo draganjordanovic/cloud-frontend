@@ -2,6 +2,9 @@
   <h2 class="card-title">Add New Artist</h2>
 
   <form [formGroup]="artistForm" (ngSubmit)="onSubmit()" class="artist-form">
+     <div class="loading-overlay" *ngIf="isLoading">
+      <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+    </div>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Artist Name</mat-label>
       <input matInput formControlName="name" placeholder="e.g. Taylor Swift" />
@@ -43,8 +46,8 @@
 </mat-form-field>
 
 
-    <button mat-raised-button color="primary" type="submit" class="submit-btn">
-      Save Artist
+     <button mat-raised-button color="primary" type="submit" [disabled]="isLoading">
+      {{ isLoading ? 'Saving...' : 'Save Artist' }}
     </button>
   </form>
 </mat-card>
