@@ -16,15 +16,19 @@
         rows="4"
       ></textarea>
     </mat-form-field>
-
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Genres</mat-label>
-      <input
-        matInput
-        formControlName="genres"
-        placeholder="e.g. pop, electronic"
-      />
-      <mat-hint>Separate multiple genres with commas</mat-hint>
+      <mat-chip-grid #chipGrid aria-label="Genre selection">
+        <mat-chip-row *ngFor="let genre of genres" (removed)="removeGenre(genre)">
+          {{ genre }}
+          <button matChipRemove aria-label="Remove genre">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+
+        <input placeholder="Press Enter to add genre" [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addGenre($event)" />
+      </mat-chip-grid>
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit" class="submit-btn">

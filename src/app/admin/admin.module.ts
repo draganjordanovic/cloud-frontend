@@ -9,6 +9,10 @@ import { MatCardModule } from '@angular/material/card';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { CreateArtistComponent } from './create-artist/create-artist.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [ AdminLayoutComponent, CreateArtistComponent],
@@ -21,7 +25,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatCardModule,
     RouterModule,
     MatToolbarModule,
-    RouterModule
+    RouterModule,
+    MatChipsModule,
+    MatIconModule,
+    MatFormFieldModule,
   ]
 })
 export class AdminModule {}
