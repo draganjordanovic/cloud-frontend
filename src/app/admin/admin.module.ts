@@ -17,9 +17,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
-  declarations: [ AdminLayoutComponent, CreateArtistComponent],
+  declarations: [AdminLayoutComponent, CreateArtistComponent],
   imports: [
-     CommonModule,
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
     RouterModule,
@@ -31,7 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSnackBarModule,
     MatIconModule,
     MatChipsModule,
-    MatProgressSpinnerModule    
+    MatProgressSpinnerModule
   ]
 })
-export class AdminModule {}
+export class AdminModule { }

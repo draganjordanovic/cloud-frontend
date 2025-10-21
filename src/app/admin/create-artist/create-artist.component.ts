@@ -53,8 +53,8 @@ export class CreateArtistComponent {
   }
 
   get genresControl() {
-  return this.artistForm.get('genres') as FormControl;
-}
+    return this.artistForm.get('genres') as FormControl;
+  }
 
 
   onSubmit() {

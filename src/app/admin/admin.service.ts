@@ -9,7 +9,7 @@ import { CREATE_ARTIST_ENDPOINT } from '../shared/app.constants';
 export class ArtistService {
   private apiUrl = CREATE_ARTIST_ENDPOINT
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   createArtist(artistData: any): Observable<any> {
     return this.http.post(this.apiUrl, artistData);

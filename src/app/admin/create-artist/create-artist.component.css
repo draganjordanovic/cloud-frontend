@@ -33,7 +33,7 @@
 }
 
 mat-chip-row {
-  background-color: rgba(63,81,181, 0.7) !important;
+  background-color: rgba(63, 81, 181, 0.7) !important;
   color: white;
   font-weight: 500;
   border-radius: 6px;
@@ -63,4 +63,3 @@ button[matChipRemove]:hover {
 .artist-card {
   position: relative;
 }
-
