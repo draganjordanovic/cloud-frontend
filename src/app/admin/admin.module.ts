@@ -1,34 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { CreateArtistComponent } from './create-artist/create-artist.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatChipGrid, MatChipRow, MatChipRemove, MatChipInput } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [ AdminLayoutComponent, CreateArtistComponent],
   imports: [
-    CommonModule,
+     CommonModule,
     ReactiveFormsModule,
-    MatSnackBarModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
+    FormsModule,
     RouterModule,
     MatToolbarModule,
-    RouterModule,
-    MatChipsModule,
-    MatIconModule,
+    MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatChipsModule
   ]
 })
 export class AdminModule {}

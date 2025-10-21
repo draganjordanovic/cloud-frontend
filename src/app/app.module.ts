@@ -20,14 +20,7 @@ import { AdminModule } from './admin/admin.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatToolbarModule,
-    MatButtonModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule,
     RouterModule,
     AdminModule
   ],
