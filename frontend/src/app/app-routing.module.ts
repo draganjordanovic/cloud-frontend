@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { CreateArtistComponent } from './admin/create-artist/create-artist.component';
+import { CreateSongComponent } from './admin/create-song/create-song.component';
 import {LoginComponent} from "./auth/login/login.component";
 import {SignupComponent} from "./auth/signup/signup.component";
-import { CreateSongComponent } from './admin/create-song/create-song.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
