@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { ArtistService } from '../admin.service';
+import { AdminService } from '../admin.service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class CreateArtistComponent {
 
   constructor(
     private fb: FormBuilder,
-    private artistService: ArtistService,
+    private artistService: AdminService,
     private snackBar: MatSnackBar
   ) {
     this.artistForm = this.fb.group({
