@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminService } from '../admin.service';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-create-song',
@@ -126,4 +127,17 @@ export class CreateSongComponent implements OnInit{
         }
       });
   }
+
+  addGenre(event: MatChipInputEvent): void {
+  const value = (event.value || '').trim();
+  if (value && !this.songForm.value.genres.includes(value)) {
+    this.songForm.value.genres.push(value);
+  }
+
+  if (event.chipInput) {
+    event.chipInput.clear();
+  }
+
+  this.songForm.get('genres')?.setValue(this.songForm.value.genres);
+}
 }

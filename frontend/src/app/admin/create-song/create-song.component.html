@@ -24,8 +24,8 @@
           {{ genre }}
           <button matChipRemove><mat-icon>cancel</mat-icon></button>
         </mat-chip-row>
-        <input placeholder="Add genre" [matChipInputFor]="chipGrid" (matChipInputTokenEnd)="songForm.value.genres.push($event.value)" />
-      </mat-chip-grid>
+    <input placeholder="Add genre" [matChipInputFor]="chipGrid" (matChipInputTokenEnd)="addGenre($event)" />
+    </mat-chip-grid>
       <mat-error *ngIf="songForm.get('genres')?.hasError('required')">
         At least one genre required
       </mat-error>
