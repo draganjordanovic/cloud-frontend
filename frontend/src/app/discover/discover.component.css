@@ -1,0 +1,57 @@
+.discover-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.filter-card {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.card-title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #3f51b5;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.music-card {
+  width: 200px;
+  margin: 1rem;
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.music-card:hover {
+  transform: translateY(-5px);
+}
+
+mat-chip-row {
+  background-color: rgba(63, 81, 181, 0.7) !important;
+  color: white;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+button[matChipRemove] {
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 4px;
+}
+
+button[matChipRemove]:hover {
+  color: white;
+}
