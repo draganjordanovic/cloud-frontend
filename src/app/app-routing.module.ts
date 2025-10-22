@@ -2,8 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { CreateArtistComponent } from './admin/create-artist/create-artist.component';
+import {LoginComponent} from "./auth/login/login.component";
+import {SignupComponent} from "./auth/signup/signup.component";
 
 const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'sign-up', component: SignupComponent},
   {
     path: 'admin',
     component: AdminLayoutComponent,
@@ -14,8 +18,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'artists', pathMatch: 'full' }
     ]
   },
-  { path: '', redirectTo: '/admin', pathMatch: 'full' },
-  { path: '**', redirectTo: '/admin' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
