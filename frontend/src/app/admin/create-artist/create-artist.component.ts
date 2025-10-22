@@ -67,6 +67,7 @@ export class CreateArtistComponent {
     this.isLoading = true;
 
     const payload = this.artistForm.value;
+    payload.genres = payload.genres.map((g: string) => g.toUpperCase());
     this.artistService.createArtist(payload).subscribe({
       next: () => {
         this.isLoading = false;

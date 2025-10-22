@@ -1,12 +1,13 @@
-import { DynamoDBClient, ScanCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
 
 const client = new DynamoDBClient({ region: "eu-central-1" });
 
 export const handler = async () => {
   try {
-    const command = new ScanCommand({
+    const command = new QueryCommand({
       TableName: "MusicMetadata",
-      FilterExpression: "#t = :artistType",
+      IndexName: "type-index",
+      KeyConditionExpression: "#t = :artistType",
       ExpressionAttributeNames: { "#t": "type" },
       ExpressionAttributeValues: { ":artistType": { S: "artist" } },
     });
