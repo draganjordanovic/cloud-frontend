@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CREATE_ARTIST_ENDPOINT } from '../shared/app.constants';
+import { ARTIST_ENDPOINT } from '../shared/app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArtistService {
-  private apiUrl = CREATE_ARTIST_ENDPOINT
+export class AdminService {
+  private apiUrl = ARTIST_ENDPOINT
 
   constructor(private http: HttpClient) { }
 
