@@ -1,0 +1,74 @@
+<mat-card>
+  <h2>Create Song</h2>
+
+  <form [formGroup]="songForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required>
+      <mat-error *ngIf="songForm.get('title')?.hasError('required')">
+        Title is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <!-- Genres -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Genres</mat-label>
+      <mat-chip-grid #chipGrid formControlName="genres">
+        <mat-chip-row *ngFor="let genre of songForm.value.genres" (removed)="songForm.value.genres.splice(songForm.value.genres.indexOf(genre), 1)">
+          {{ genre }}
+          <button matChipRemove><mat-icon>cancel</mat-icon></button>
+        </mat-chip-row>
+        <input placeholder="Add genre" [matChipInputFor]="chipGrid" (matChipInputTokenEnd)="songForm.value.genres.push($event.value)" />
+      </mat-chip-grid>
+      <mat-error *ngIf="songForm.get('genres')?.hasError('required')">
+        At least one genre required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Artists -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Artists</mat-label>
+      <mat-select formControlName="artistIds" multiple>
+        <mat-option *ngFor="let artist of artists" [value]="artist.id">
+          {{ artist.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="songForm.get('artistIds')?.hasError('required')">
+        At least one artist required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Album -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Album</mat-label>
+      <mat-select formControlName="albumId">
+        <mat-option value="">Single (no album)</mat-option>
+        <mat-option *ngFor="let album of albums" [value]="album.id.S">
+          {{ album.title.S }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- File upload -->
+    <div class="file-input">
+      <label>Upload MP3 file *</label>
+      <input type="file" accept="audio/mpeg" (change)="onFileSelect($event)" required>
+    </div>
+
+    <div class="file-input">
+      <label>Upload cover image (optional)</label>
+      <input type="file" accept="image/*" (change)="onImageSelect($event)">
+    </div>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="loading">
+      <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="20"></mat-progress-spinner>
+      <span *ngIf="!loading">Upload Song</span>
+    </button>
+  </form>
+</mat-card>

@@ -13,11 +13,14 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { CreateArtistComponent } from './create-artist/create-artist.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CreateSongComponent } from './create-song/create-song.component';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
 @NgModule({
-  declarations: [AdminLayoutComponent, CreateArtistComponent],
+  declarations: [AdminLayoutComponent, CreateArtistComponent, CreateSongComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -31,7 +34,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSnackBarModule,
     MatIconModule,
     MatChipsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatOptionModule,
+    MatSelectModule
   ]
 })
 export class AdminModule { }
