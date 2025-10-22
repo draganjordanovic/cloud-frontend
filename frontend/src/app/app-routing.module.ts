@@ -4,6 +4,7 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { CreateArtistComponent } from './admin/create-artist/create-artist.component';
 import {LoginComponent} from "./auth/login/login.component";
 import {SignupComponent} from "./auth/signup/signup.component";
+import { CreateSongComponent } from './admin/create-song/create-song.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -13,7 +14,7 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     children: [
       { path: 'artists', component: CreateArtistComponent },
-      // { path: 'upload-music', component: UploadMusicComponent },
+      { path: 'upload-music', component: CreateSongComponent },
       // { path: 'upload-album', component: UploadAlbumComponent },
       { path: '', redirectTo: 'artists', pathMatch: 'full' }
     ]
