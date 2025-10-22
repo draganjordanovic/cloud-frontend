@@ -125,15 +125,17 @@ export class CreateAlbumComponent {
       fileName: s.fileName,
       fileType: s.fileType,
       fileSize: s.fileSize,
-      genres: s.genres || [],
+    genres: (s.genres || []).map((g: string) => g.toUpperCase()),
       description: s.description
     }));
+
+    const upperGenres = this.genres.map(g => g.toUpperCase());
 
     const payload = {
       albumTitle: data.albumTitle,
       description: data.description,
       releaseYear: data.releaseYear,
-      genres: this.genres,
+      genres: upperGenres,
       artistIds: data.artistIds,
       songs: formattedSongs
     };
@@ -144,6 +146,7 @@ export class CreateAlbumComponent {
         this.snackBar.open('Album created successfully!', 'Close', { duration: 3000 });
         this.isSubmitting = false;
         this.albumForm.reset();
+        this.genres = [];
       },
       error: (err) => {
         console.error(err);
