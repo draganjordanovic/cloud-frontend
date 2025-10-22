@@ -18,9 +18,18 @@
     </mat-form-field>
 
     <mat-form-field class="full-width" appearance="fill">
-      <mat-label>Genres (comma-separated)</mat-label>
-      <input matInput formControlName="genres">
-    </mat-form-field>
+<mat-label>Genres</mat-label>
+<mat-chip-grid #chipGrid aria-label="Album genres">
+    <mat-chip *ngFor="let genre of genres" [removable]="true" (removed)="removeGenre(genre)" color="primary">
+        {{ genre }}
+        <button matChipRemove aria-label="Remove genre">
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </mat-chip>
+    <input placeholder="Add genre" [matChipInputFor]="chipGrid" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="true" (matChipInputTokenEnd)="addGenre($event)">
+</mat-chip-grid>
+</mat-form-field>
 
     <mat-form-field class="full-width" appearance="fill">
       <mat-label>Artists</mat-label>
@@ -37,9 +46,20 @@
           <input matInput formControlName="title" required>
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Genres (comma-separated)</mat-label>
-          <input matInput formControlName="genres">
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Song Genres</mat-label>
+                <mat-chip-grid #chipGrid aria-label="Song genres">
+                <mat-chip *ngFor="let genre of song.get('genres')?.value" [removable]="true"
+                    (removed)="removeSongGenre(i, genre)" color="primary">
+                    {{ genre }}
+                    <button matChipRemove aria-label="Remove genre">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip>
+                <input placeholder="Add genre" [matChipInputFor]="chipGrid"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                    (matChipInputTokenEnd)="addSongGenre($event, i)">
+            </mat-chip-grid>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="full-width">

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AdminService } from '../admin.service';
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
 
 @Component({
   selector: 'app-create-album',
@@ -33,6 +35,22 @@ export class CreateAlbumComponent {
     this.loadArtists();
     this.addSong();
   }
+  genres: string[] = [];
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+
+  addGenre(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim().toLowerCase();
+    if (value && !this.genres.includes(value)) {
+      this.genres.push(value);
+    }
+    event.chipInput!.clear();
+    this.albumForm.patchValue({ genres: this.genres });
+  }
+
+  removeGenre(genre: string): void {
+    this.genres = this.genres.filter(g => g !== genre);
+    this.albumForm.patchValue({ genres: this.genres });
+  }
 
   get songs(): FormArray {
     return this.albumForm.get('songs') as FormArray;
@@ -45,7 +63,7 @@ export class CreateAlbumComponent {
       fileName: [''],
       fileType: [''],
       fileSize: [0],
-      genres: [''],
+      genres: [[]],
       description: ['']
     });
     this.songs.push(songGroup);
@@ -53,6 +71,26 @@ export class CreateAlbumComponent {
 
   removeSong(index: number): void {
     this.songs.removeAt(index);
+  }
+  addSongGenre(event: any, i: number): void {
+    const input = event.input;
+    const value = (event.value || '').trim().toLowerCase();
+
+    if (value) {
+      const song = this.songs.at(i);
+      const currentGenres = song.get('genres')?.value || [];
+      if (!currentGenres.includes(value)) {
+        song.get('genres')?.setValue([...currentGenres, value]);
+      }
+    }
+
+    if (input) input.value = '';
+  }
+
+  removeSongGenre(songIndex: number, genre: string): void {
+    const song = this.songs.at(songIndex);
+    const currentGenres = song.get('genres')?.value || [];
+    song.get('genres')?.setValue(currentGenres.filter((g: string) => g !== genre));
   }
 
   onFileSelected(event: any, i: number): void {
@@ -87,7 +125,7 @@ export class CreateAlbumComponent {
       fileName: s.fileName,
       fileType: s.fileType,
       fileSize: s.fileSize,
-      genres: s.genres ? s.genres.split(',').map((g: string) => g.trim()) : [],
+      genres: s.genres || [],
       description: s.description
     }));
 
@@ -95,7 +133,7 @@ export class CreateAlbumComponent {
       albumTitle: data.albumTitle,
       description: data.description,
       releaseYear: data.releaseYear,
-      genres: data.genres ? data.genres.split(',').map((g: string) => g.trim()) : [],
+      genres: this.genres,
       artistIds: data.artistIds,
       songs: formattedSongs
     };
