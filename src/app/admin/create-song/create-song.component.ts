@@ -34,7 +34,7 @@ export class CreateSongComponent implements OnInit{
       artistIds: [[], Validators.required],
       albumId: [''],
       file: [null, Validators.required],
-      image: [null]
+      image: [null, Validators.required]
     });
 
     this.loadArtists();
@@ -53,12 +53,14 @@ export class CreateSongComponent implements OnInit{
   }
 
   loadAlbums() {
-    // this.adminService.getAlbums()
-    //   .subscribe({
-    //     next: (res: any) => this.albums = res,
-    //     error: () => this.albums = []
-    //   });
-    console.log("dodaj load albums");
+    this.adminService.getAlbums()
+      .subscribe({
+        next: (res: any) => {
+          this.albums = res.albums;
+          console.log(this.albums);
+        },
+        error: () => this.albums = []
+      });
   }
 
   onFileSelect(event: any) {
@@ -85,12 +87,14 @@ export class CreateSongComponent implements OnInit{
     const file = this.selectedFile!;
     const image = this.selectedImage;
 
+    const genresUppercase = genres.map((g: string) => g.toUpperCase());
+
     this.loading = true;
 
     const payload = {
       title,
       description,
-      genres,
+      genres: genresUppercase,
       artistIds,
       albumId: albumId || 'single',
       fileName: file.name,

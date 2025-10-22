@@ -49,8 +49,8 @@
       <mat-label>Album</mat-label>
       <mat-select formControlName="albumId">
         <mat-option value="">Single (no album)</mat-option>
-        <mat-option *ngFor="let album of albums" [value]="album.id.S">
-          {{ album.title.S }}
+        <mat-option *ngFor="let album of albums" [value]="album.id">
+          {{ album.title }}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -62,7 +62,7 @@
     </div>
 
     <div class="file-input">
-      <label>Upload cover image (optional)</label>
+      <label>Upload cover image *</label>
       <input type="file" accept="image/*" (change)="onImageSelect($event)">
     </div>
 
