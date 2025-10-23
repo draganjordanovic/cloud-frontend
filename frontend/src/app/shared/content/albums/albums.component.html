@@ -1,0 +1,15 @@
+<div class="albums-container">
+  <h2>Albums</h2>
+
+  <div class="album-grid">
+    <div *ngFor="let album of albums" class="album-card" (click)="openAlbum(album.id)">
+      <div class="album-info">
+        <h3>{{ album.title }}</h3>
+        <p>{{ album.primaryGenre || 'Unknown Genre' }}</p>
+        <small>Released: {{ album.releaseYear }}</small>
+      </div>
+    </div>
+  </div>
+
+  <button *ngIf="nextCursor" (click)="loadMore()">Load more</button>
+</div>
