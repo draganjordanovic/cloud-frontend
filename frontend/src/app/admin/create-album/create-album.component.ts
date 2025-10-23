@@ -113,7 +113,7 @@ export class CreateAlbumComponent {
     });
   }
 
-  submit(): void {
+  async submit(): Promise<void> {
     if (this.albumForm.invalid) {
       this.snackBar.open('Please fill all required fields.', 'Close', { duration: 3000 });
       return;
@@ -125,7 +125,7 @@ export class CreateAlbumComponent {
       fileName: s.fileName,
       fileType: s.fileType,
       fileSize: s.fileSize,
-    genres: (s.genres || []).map((g: string) => g.toUpperCase()),
+      genres: (s.genres || []).map((g: string) => g.toUpperCase()),
       description: s.description
     }));
 
@@ -141,19 +141,46 @@ export class CreateAlbumComponent {
     };
 
     this.isSubmitting = true;
+
     this.adminService.createAlbum(payload).subscribe({
-      next: (res) => {
-        this.snackBar.open('Album created successfully!', 'Close', { duration: 3000 });
-        this.isSubmitting = false;
-        this.albumForm.reset();
-        this.genres = [];
+      next: async (res) => {
+        const uploadResults = res.songs;
+        this.snackBar.open('Uploading songs...', 'Close', { duration: 3000 });
+
+        try {
+          for (let i = 0; i < uploadResults.length; i++) {
+            const song = data.songs[i];
+            const uploadInfo = uploadResults[i];
+
+            const file = song.file;
+            if (!file || !uploadInfo.uploadUrl) continue;
+
+            const response = await fetch(uploadInfo.uploadUrl, {
+              method: 'PUT',
+              headers: { 'Content-Type': file.type },
+              body: file
+            });
+
+            if (!response.ok) throw new Error(`Upload failed for ${file.name}`);
+          }
+
+          this.snackBar.open('Album created and all songs uploaded successfully!', 'Close', { duration: 4000 });
+          this.albumForm.reset();
+          this.genres = [];
+        } catch (err) {
+          console.error('Upload error:', err);
+          this.snackBar.open('Error uploading songs to S3.', 'Close', { duration: 4000 });
+        } finally {
+          this.isSubmitting = false;
+        }
       },
       error: (err) => {
-        console.error(err);
+        console.error('Album creation error:', err);
         this.isSubmitting = false;
         this.snackBar.open('Error creating album.', 'Close', { duration: 3000 });
       }
     });
   }
+
 
 }
