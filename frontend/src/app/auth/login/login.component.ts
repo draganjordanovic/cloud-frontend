@@ -44,6 +44,8 @@ export class LoginComponent {
 
                 const groups: string[] = payload['cognito:groups'] || [];
 
+                localStorage.setItem("groups", JSON.stringify(groups));
+
                 // role-based redirection
                 if (groups.includes('Admin')) {
                     this.router.navigate(['/admin/artists']);

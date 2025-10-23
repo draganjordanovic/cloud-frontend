@@ -41,6 +41,16 @@ export class AlbumsComponent {
   }
 
   openAlbum(id: string) {
-    this.router.navigate(['admin/albums', id]);
+
+
+    const storedGroups = localStorage.getItem('groups');
+    const groups: string[] = storedGroups ? JSON.parse(storedGroups) : [];
+
+    if (groups.includes('Admin')) {
+      this.router.navigate(['admin/albums', id]);
+    } else {
+      this.router.navigate(['user/album', id]);
+    }
+
   }
 }
