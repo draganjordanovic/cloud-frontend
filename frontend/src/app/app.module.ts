@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import {MatButton, MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -23,26 +23,27 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     AppComponent,
     DiscoverComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    RouterModule,
-    AdminModule,
-    MatLabel,
-    MatToolbar,
-    MatCard,
-    MatFormField,
-    MatChipGrid,
-    MatChipRow,
-    MatCardContent,
-    MatIcon,
-    MatChipInput,
-    ReactiveFormsModule,
-    MatCardImage,
-    NgOptimizedImage,
-    MatInput
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        RouterModule,
+        AdminModule,
+        MatLabel,
+        MatToolbar,
+        MatCard,
+        MatFormField,
+        MatChipGrid,
+        MatChipRow,
+        MatCardContent,
+        MatIcon,
+        MatChipInput,
+        ReactiveFormsModule,
+        MatCardImage,
+        NgOptimizedImage,
+        MatInput,
+        MatButton
+    ],
   providers: [
     provideAnimationsAsync()
   ],

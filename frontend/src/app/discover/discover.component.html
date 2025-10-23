@@ -1,34 +1,54 @@
 <mat-toolbar color="primary" class="user-toolbar">
-  <span class="app-title">🎵 Cloud Music Discover</span>
+  <span class="app-title">🎵 Discover Music</span>
 </mat-toolbar>
 
 <div class="discover-container">
   <mat-card class="filter-card">
     <h2 class="card-title">Filter by Genre</h2>
     <mat-form-field appearance="fill" class="full-width">
-      <input matInput placeholder="Select Genre" [formControl]="genresControl">
-      <mat-chip-grid #chipGrid [formControl]="genresControl">
-        <mat-chip-row *ngFor="let genre of selectedGenres" (removed)="removeGenre(genre)">
-          {{ genre }}
-          <button matChipRemove aria-label="Remove genre">
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-        <input placeholder="Press Enter to add genre"
-               [matChipInputFor]="chipGrid"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               (matChipInputTokenEnd)="addGenre($event)" />
-      </mat-chip-grid>
+      <input matInput
+             placeholder="Enter Genre"
+             [formControl]="genreControl"
+             (keyup.enter)="filterByGenre()" />
     </mat-form-field>
+    <button mat-raised-button color="primary" (click)="filterByGenre()">
+      Apply Filter
+    </button>
   </mat-card>
 
   <div class="content-list">
     <mat-card class="music-card" *ngFor="let item of filteredContent">
-      <img mat-card-image ngSrc="{{ item.cover }}" alt="{{ item.title }}" fill>
+
+      <div class="music-card-image-container">
+        <img ngSrc="{{ item.cover }}"
+             alt="{{ item.title || item.name }}"
+             fill>
+      </div>
+
       <mat-card-content>
-        <h3>{{ item.title }}</h3>
-        <p *ngIf="item.artist">By {{ item.artist }}</p>
-        <p *ngIf="item.album">Album: {{ item.album }}</p>
+        <h3>{{ item.title || item.name }}</h3>
+
+        <!-- Song info -->
+        <p *ngIf="item.type === 'song' && item.artistNames?.length">
+          By {{ item.artistNames.join(', ') }}
+        </p>
+        <p *ngIf="item.type === 'song' && item.albumName">
+          Album: {{ item.albumName }}
+        </p>
+
+        <!-- Album info -->
+        <p *ngIf="item.type === 'album' && item.artistNames?.length">
+          By {{ item.artistNames.join(', ') }}
+        </p>
+        <p *ngIf="item.type === 'album' && item.releaseYear">
+          Year: {{ item.releaseYear }}
+        </p>
+
+        <!-- Artist info -->
+        <p *ngIf="item.type === 'artist' && item.bio">
+          {{ item.bio }}
+        </p>
+
       </mat-card-content>
     </mat-card>
   </div>

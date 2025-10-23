@@ -1,36 +1,31 @@
 import { Component } from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { FormControl } from '@angular/forms';
+import { DiscoverService } from './discover.service';
 
 @Component({
   selector: 'app-discover',
   templateUrl: './discover.component.html',
-  styleUrl: './discover.component.css'
+  styleUrls: ['./discover.component.css']
 })
 export class DiscoverComponent {
 
-  selectedGenres: string[] = [];
-  genresControl = new FormControl<string[]>([], []);
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  genreControl = new FormControl('');
+  filteredContent: any[] = [];
 
-  filteredContent = [
-    { title: 'Song A', artist: 'Artist 1', album: 'Album X', cover: 'https://via.placeholder.com/200' },
-    { title: 'Song B', artist: 'Artist 2', album: 'Album Y', cover: 'https://via.placeholder.com/200' },
-    { title: 'Song C', artist: 'Artist 1', album: 'Album X', cover: 'https://via.placeholder.com/200' }
-  ];
+  constructor(private discoverService: DiscoverService) {}
 
-  addGenre(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-    if (value && !this.selectedGenres.includes(value)) {
-      this.selectedGenres.push(value);
-      this.genresControl.setValue(this.selectedGenres);
-    }
-    event.chipInput!.clear();
-  }
+  filterByGenre(): void {
+    const genre = this.genreControl.value?.trim();
+    if (!genre) return;
 
-  removeGenre(genre: string): void {
-    this.selectedGenres = this.selectedGenres.filter(g => g !== genre);
-    this.genresControl.setValue(this.selectedGenres);
+    this.discoverService.getContentByGenre(genre).subscribe({
+      next: (data) => {
+        console.log('Data from API:', data);
+        this.filteredContent = data;
+      },
+      error: (err) => {
+        console.error('Error fetching content:', err);
+      }
+    });
   }
 }

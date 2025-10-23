@@ -7,16 +7,23 @@
 .filter-card {
   max-width: 600px;
   margin: 2rem auto;
-  padding: 1.5rem 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   background: #fff;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.filter-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
 .card-title {
   text-align: center;
-  margin-bottom: 1rem;
-  font-weight: 600;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
   color: #3f51b5;
 }
 
@@ -24,34 +31,57 @@
   width: 100%;
 }
 
+.content-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
 .music-card {
-  width: 200px;
-  margin: 1rem;
-  display: inline-block;
-  vertical-align: top;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  overflow: hidden;
+  background: #fff;
 }
 
 .music-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
 }
 
-mat-chip-row {
-  background-color: rgba(63, 81, 181, 0.7) !important;
-  color: white;
-  font-weight: 500;
-  border-radius: 6px;
-  padding: 4px 10px;
+.music-card-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
 }
 
-button[matChipRemove] {
-  color: rgba(255, 255, 255, 0.7);
-  margin-left: 4px;
+.music-card-image-container img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s;
 }
 
-button[matChipRemove]:hover {
-  color: white;
+.music-card:hover .music-card-image-container img {
+  transform: scale(1.05);
+}
+
+.music-card mat-card-content h3 {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  color: #222;
+}
+
+.music-card mat-card-content p {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.2rem 0;
 }
