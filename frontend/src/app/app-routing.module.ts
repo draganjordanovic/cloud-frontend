@@ -12,8 +12,9 @@ import {
 import { CreateAlbumComponent } from './admin/create-album/create-album.component';
 import { AlbumsComponent } from './shared/content/albums/albums.component';
 import { SinglesComponent } from './shared/content/singles/singles.component';
-import { AlbumDetailsComponent } from './shared/content/album-details/album-details.component';
 import {UserLayoutComponent} from './user/user-layout/user-layout.component';
+import { AlbumDetailsComponent } from './album-details/album-details.component';
+import { AlbumViewComponent } from './shared/content/album-details/album-view.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -28,7 +29,7 @@ const routes: Routes = [
       { path: 'upload-album', component: CreateAlbumComponent },
       { path: 'albums', component: AlbumsComponent },
       { path: 'songs', component: SinglesComponent },
-      { path: 'albums/:id', component: AlbumDetailsComponent },
+      { path: 'albums/:id', component: AlbumViewComponent },
       { path: '', redirectTo: 'artists', pathMatch: 'full' }
     ]
   },

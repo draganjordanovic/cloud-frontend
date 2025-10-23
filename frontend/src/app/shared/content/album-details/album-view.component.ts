@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { MusicService } from '../music.service';
 
 @Component({
-  selector: 'app-album-details',
-  templateUrl: './album-details.component.html',
-  styleUrl: './album-details.component.css'
+  selector: 'app-album-view',
+  templateUrl: './album-view.component.html',
+  styleUrl: './album-view.component.css'
 })
-export class AlbumDetailsComponent {
+export class AlbumViewComponent {
 
  album: any = null;
   songs: any[] = [];

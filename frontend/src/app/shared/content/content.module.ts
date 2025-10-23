@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlbumsComponent } from './albums/albums.component';
 import { SinglesComponent } from './singles/singles.component';
-import { AlbumDetailsComponent } from './album-details/album-details.component';
+import { AlbumViewComponent } from './album-details/album-view.component';
 
 
 
@@ -10,7 +10,7 @@ import { AlbumDetailsComponent } from './album-details/album-details.component';
   declarations: [
     AlbumsComponent,
     SinglesComponent,
-    AlbumDetailsComponent
+    AlbumViewComponent
   ],
   imports: [
     CommonModule
