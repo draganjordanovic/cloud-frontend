@@ -34,4 +34,7 @@ export class AdminService {
       body: file
     });
   }
+  createAlbum(data: any): Observable<any> {
+    return this.http.post(this.albumsUrl, data);
+  }
 }

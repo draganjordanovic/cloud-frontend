@@ -8,6 +8,7 @@ import {SignupComponent} from "./auth/signup/signup.component";
 import {
   SignupConfirmationComponent
 } from "./auth/signup-confirmation/signup-confirmation/signup-confirmation.component";
+import { CreateAlbumComponent } from './admin/create-album/create-album.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -19,7 +20,7 @@ const routes: Routes = [
     children: [
       { path: 'artists', component: CreateArtistComponent },
       { path: 'upload-music', component: CreateSongComponent },
-      // { path: 'upload-album', component: UploadAlbumComponent },
+      { path: 'upload-album', component: CreateAlbumComponent },
       { path: '', redirectTo: 'artists', pathMatch: 'full' }
     ]
   },
