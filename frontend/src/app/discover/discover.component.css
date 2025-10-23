@@ -18,13 +18,32 @@
 }
 
 .filter-card {
-  max-width: 600px;
+  width: 100%;
+  max-width: 800px;
   margin: 2rem auto;
-  padding: 2rem;
+  padding: 2rem 3rem;
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   background: #fff;
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.filter-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.filter-fields mat-form-field {
+  flex: 1 1 200px;
+}
+
+.apply-btn {
+  align-self: flex-start;
+  margin-top: 0.5rem;
 }
 
 .filter-card:hover {
@@ -44,12 +63,24 @@
   width: 100%;
 }
 
+.discover-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
 .content-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 24px;
-  width: 100%;
-  padding-bottom: 3rem;
+  gap: 32px;
+  justify-content: center;
+  max-width: 1200px;
+  width: auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .music-card {
