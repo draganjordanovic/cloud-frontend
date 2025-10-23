@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { CreateArtistComponent } from './admin/create-artist/create-artist.component';
 import { CreateSongComponent } from './admin/create-song/create-song.component';
+import {DiscoverComponent} from './discover/discover.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'artists', pathMatch: 'full' }
     ]
   },
+  { path: 'discover', component: DiscoverComponent },
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
   { path: '**', redirectTo: '/admin' }
 ];
