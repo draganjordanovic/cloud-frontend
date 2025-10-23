@@ -1,0 +1,108 @@
+.auth-background {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top left, #2e1a47, #1a0933 60%, #0d021f);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #eee;
+}
+
+.auth-card {
+    width: 380px;
+    padding: 2rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #c6a3ff;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-field label {
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: #ddd;
+}
+
+.form-field input {
+    padding: 0.6rem 0.8rem;
+    border-radius: 10px;
+    border: 1px solid #4b3b73;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.form-field input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-field input:focus {
+    outline: none;
+    border-color: #9c7ffb;
+    box-shadow: 0 0 0 3px rgba(156, 127, 251, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.7rem 0;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(90deg, #7c4dff, #512da8);
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.3s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(124, 77, 255, 0.4);
+    background: linear-gradient(90deg, #8e66ff, #6a3ce8);
+}
+
+.submit-btn:disabled {
+    background: #5b4b82;
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.redirect {
+    margin-top: 1.2rem;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.redirect a {
+    color: #b390ff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.redirect a:hover {
+    color: #d1b8ff;
+    text-decoration: underline;
+}

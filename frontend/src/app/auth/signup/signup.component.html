@@ -1,0 +1,45 @@
+<div class="auth-background">
+    <div class="auth-card">
+        <h2 class="form-title">Sign Up</h2>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="form-field">
+                <label>Given name</label>
+                <input type="text" formControlName="givenName" required />
+            </div>
+
+            <div class="form-field">
+                <label>Family name</label>
+                <input type="text" formControlName="familyName" required />
+            </div>
+
+            <div class="form-field">
+                <label>Date of birth</label>
+                <input type="date" formControlName="dob" required />
+            </div>
+
+            <div class="form-field">
+                <label>Username</label>
+                <input type="text" formControlName="username" required />
+            </div>
+
+            <div class="form-field">
+                <label>Email</label>
+                <input type="email" formControlName="email" required />
+            </div>
+
+            <div class="form-field">
+                <label>Password</label>
+                <input type="password" formControlName="password" required />
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="signupForm.invalid">
+                Sign Up
+            </button>
+
+            <p class="redirect">
+                Already have an account? <a routerLink="/login">Login</a>
+            </p>
+        </form>
+    </div>
+</div>

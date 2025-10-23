@@ -3,9 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.component';
 import { CreateArtistComponent } from './admin/create-artist/create-artist.component';
 import { CreateSongComponent } from './admin/create-song/create-song.component';
+import {LoginComponent} from "./auth/login/login.component";
+import {SignupComponent} from "./auth/signup/signup.component";
+import {
+  SignupConfirmationComponent
+} from "./auth/signup-confirmation/signup-confirmation/signup-confirmation.component";
 import { CreateAlbumComponent } from './admin/create-album/create-album.component';
 
 const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'sign-up', component: SignupComponent},
+  {path: 'sign-up-confirmation', component: SignupConfirmationComponent},
   {
     path: 'admin',
     component: AdminLayoutComponent,
@@ -16,8 +24,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'artists', pathMatch: 'full' }
     ]
   },
-  { path: '', redirectTo: '/admin', pathMatch: 'full' },
-  { path: '**', redirectTo: '/admin' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
