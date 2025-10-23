@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
-import {MatButton, MatButtonModule} from '@angular/material/button';
+import {MatAnchor, MatButton, MatButtonModule} from '@angular/material/button';
 import {HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -24,6 +24,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SignupConfirmationComponent } from './auth/signup-confirmation/signup-confirmation/signup-confirmation.component';
 import {AuthInterceptor} from "./auth/auth.interceptor";
+import { UserLayoutComponent } from './user/user-layout/user-layout.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
     AlbumDetailsComponent,
     LoginComponent,
     SignupComponent,
-    SignupConfirmationComponent
+    SignupConfirmationComponent,
+    UserLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
     MatSelect,
     MatOption,
     MatButton,
-    MatToolbar
+    MatToolbar,
+    MatAnchor
   ],
   providers: [
     provideAnimationsAsync(),

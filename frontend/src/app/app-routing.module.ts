@@ -11,6 +11,7 @@ import {
   SignupConfirmationComponent
 } from "./auth/signup-confirmation/signup-confirmation/signup-confirmation.component";
 import { CreateAlbumComponent } from './admin/create-album/create-album.component';
+import {UserLayoutComponent} from './user/user-layout/user-layout.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -26,8 +27,14 @@ const routes: Routes = [
       { path: '', redirectTo: 'artists', pathMatch: 'full' }
     ]
   },
-  { path: 'discover', component: DiscoverComponent },
-  { path: 'albums/:id', component: AlbumDetailsComponent },
+  {
+    path: 'user',
+    component: UserLayoutComponent,
+    children: [
+      { path: 'discover', component: DiscoverComponent },
+      { path: 'albums/:id', component: AlbumDetailsComponent },
+    ]
+  },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];
