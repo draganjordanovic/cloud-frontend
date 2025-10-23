@@ -23,7 +23,6 @@ export class LoginComponent {
     }
 
 
-
     onSubmit() {
         if (!this.loginForm.valid) return;
 
@@ -43,8 +42,6 @@ export class LoginComponent {
 
                 const payload = this.parseJwt(idToken);
                 const groups: string[] = payload['cognito:groups'] || [];
-
-                console.log("grupaaa ", groups)
 
                 // role-based redirection
                 if (groups.includes('Admin')) {
