@@ -1,1 +1,48 @@
-<p>singles works!</p>
+<div class="singles-container">
+  <h2>Singles</h2>
+
+  <div class="singles-grid">
+    <div *ngFor="let s of singles" class="single-card">
+      <div class="single-cover">
+        <img [src]="s.coverUrl || 'assets/default-cover.jpg'" alt="{{ s.title }}">
+      </div>
+
+      <div class="single-info">
+        <h3>{{ s.title }}</h3>
+        <p class="genre">{{ s.primaryGenre || 'Unknown genre' }}</p>
+        <p class="details">
+          <span>🎤 {{ s.artistIds.length ? s.artistIds.join(', ') : 'Unknown Artist' }}</span><br>
+          <span>📅 {{ s.createdAt | date:'mediumDate' }}</span><br>
+          <span>💾 {{ (s.fileSize / 1024 / 1024) | number:'1.1-2' }} MB</span>
+        </p>
+      </div>
+
+      <div class="single-actions">
+        <button (click)="playSong(s.id)">
+          ▶ Play
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button class="load-more" *ngIf="nextCursor" (click)="loadSingles()">Load more</button>
+</div>
+
+<div class="mini-player" *ngIf="currentSong">
+  <div class="mini-player-info">
+    <img [src]="currentSong.coverUrl" alt="Cover" class="mini-cover" />
+    <div class="song-details">
+      <h4>{{ currentSong.title }}</h4>
+      <p>{{ currentSong.primaryGenre || 'Unknown Genre' }}</p>
+    </div>
+  </div>
+
+  <div class="mini-player-controls">
+    <button (click)="togglePlay()">
+      {{ isPlaying ? '⏸ Pause' : '▶ Play' }}
+    </button>
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="progress"></div>
+    </div>
+  </div>
+</div>
