@@ -12,6 +12,7 @@ import { SinglesComponent } from './singles/singles.component';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+    exports: [AlbumsComponent]
 })
 export class ContentModule { }

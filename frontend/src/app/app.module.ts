@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { AdminModule } from './admin/admin.module';
+import { ContentModule } from './shared/content/content.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AdminModule } from './admin/admin.module';
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
-    AdminModule
+    AdminModule,
+    ContentModule
   ],
   providers: [
     provideAnimationsAsync()
