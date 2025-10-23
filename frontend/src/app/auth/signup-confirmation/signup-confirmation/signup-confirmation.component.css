@@ -98,6 +98,7 @@
     color: #b390ff;
     font-weight: 600;
     text-decoration: none;
+    cursor: pointer;
     transition: color 0.2s;
 }
 

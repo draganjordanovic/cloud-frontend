@@ -5,10 +5,14 @@ import { CreateArtistComponent } from './admin/create-artist/create-artist.compo
 import { CreateSongComponent } from './admin/create-song/create-song.component';
 import {LoginComponent} from "./auth/login/login.component";
 import {SignupComponent} from "./auth/signup/signup.component";
+import {
+  SignupConfirmationComponent
+} from "./auth/signup-confirmation/signup-confirmation/signup-confirmation.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'sign-up', component: SignupComponent},
+  {path: 'sign-up-confirmation', component: SignupConfirmationComponent},
   {
     path: 'admin',
     component: AdminLayoutComponent,
