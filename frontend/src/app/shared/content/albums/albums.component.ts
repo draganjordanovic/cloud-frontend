@@ -41,7 +41,6 @@ export class AlbumsComponent {
   }
 
   openAlbum(id: string) {
-    // this.router.navigate(['/albums', id]);
-    console.log("prikaz pojedinacnog albuma");
+    this.router.navigate(['admin/albums', id]);
   }
 }
