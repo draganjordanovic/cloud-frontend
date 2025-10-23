@@ -1,0 +1,31 @@
+
+<div class="album-details-container" *ngIf="album">
+  <div class="album-header">
+
+    <div class="album-info">
+      <h1>{{ album.title }}</h1>
+      <p *ngIf="artists.length">By: </p>
+      <p *ngIf="album.releaseYear">Released: {{ album.releaseYear }}</p>
+      <p *ngIf="album.description">{{ album.description }}</p>
+      <div class="genres" *ngIf="album.genres?.length">
+        <span class="genre" *ngFor="let g of album.genres">{{ g }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="song-list">
+    <h2>Songs</h2>
+    <div class="songs-grid">
+      <div class="song-card" *ngFor="let song of songs">
+        <div class="song-cover">
+
+
+        </div>
+        <div class="song-info">
+          <p class="song-title">{{ song.title }}</p>
+          <p class="song-artists">{{ song.artistIds?.join(', ') }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

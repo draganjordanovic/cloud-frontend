@@ -1,0 +1,160 @@
+.discover-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem;
+  background: linear-gradient( #fafafa, #f0f0ff);
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+
+  border-radius: 20px;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.discover-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #3f51b5;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+}
+
+.filter-card {
+  width: 100%;
+  max-width: 900px;
+  background: #ffffff;
+  padding: 1.8rem 2.5rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.filter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+}
+
+.filter-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+mat-form-field {
+  flex: 1 1 250px;
+  min-width: 220px;
+}
+
+.apply-btn {
+  height: 50px;
+  padding: 0 1.8rem;
+  border-radius: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+  align-self: flex-end;
+  transform: translateY(4px);
+
+  mat-icon {
+    font-size: 20px;
+  }
+}
+
+.no-content-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.no-content-message h2 {
+  font-size: 1.8rem;
+  color: #3f51b5;
+  margin-bottom: 0.5rem;
+}
+
+.no-content-message p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.content-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 32px;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.music-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  .music-card-image-container {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+  }
+
+  &:hover img {
+    transform: scale(1.06);
+  }
+
+  mat-card-content {
+    padding: 0.8rem 1rem 1rem 1rem;
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 0.3rem;
+    }
+
+    p {
+      color: #555;
+      font-size: 0.9rem;
+      margin: 0.15rem 0;
+      line-height: 1.3;
+    }
+
+    strong {
+      color: #3f51b5;
+      font-weight: 600;
+    }
+  }
+}
