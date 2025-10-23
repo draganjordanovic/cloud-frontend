@@ -4,6 +4,8 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { CreateArtistComponent } from './admin/create-artist/create-artist.component';
 import { CreateSongComponent } from './admin/create-song/create-song.component';
 import { CreateAlbumComponent } from './admin/create-album/create-album.component';
+import { AlbumsComponent } from './shared/content/albums/albums.component';
+import { SinglesComponent } from './shared/content/singles/singles.component';
 
 const routes: Routes = [
   {
@@ -13,6 +15,8 @@ const routes: Routes = [
       { path: 'artists', component: CreateArtistComponent },
       { path: 'upload-music', component: CreateSongComponent },
       { path: 'upload-album', component: CreateAlbumComponent },
+      { path: 'albums', component: AlbumsComponent },
+      { path: 'songs', component: SinglesComponent },
       { path: '', redirectTo: 'artists', pathMatch: 'full' }
     ]
   },
