@@ -30,4 +30,8 @@ export class AuthService {
         return this.http.post(`${AUTH_ENDPOINT}/resend-confirmation-code`, { username });
     }
 
+
+    login(username: string, password: string): Observable<any> {
+        return this.http.post(`${AUTH_ENDPOINT}/login`, { username, password });
+    }
 }
