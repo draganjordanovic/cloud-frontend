@@ -12,6 +12,7 @@ import {MatFormField, MatInput, MatInputModule, MatLabel} from '@angular/materia
 import {MatCard, MatCardContent, MatCardImage, MatCardModule} from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { AdminModule } from './admin/admin.module';
+import { ContentModule } from './shared/content/content.module';
 import {DiscoverComponent} from './discover/discover.component';
 import {MatChipGrid, MatChipInput, MatChipRow} from '@angular/material/chips';
 import {MatIcon} from '@angular/material/icon';
@@ -42,6 +43,7 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     HttpClientModule,
     RouterModule,
     AdminModule,
+    ContentModule,
     MatLabel,
     MatCard,
     MatFormField,
