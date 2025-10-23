@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
-import {MatButton, MatButtonModule, MatIconButton} from '@angular/material/button';
-import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import {HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatFormField, MatInput, MatInputModule, MatLabel} from '@angular/material/input';
@@ -20,12 +20,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import {MatList, MatListItem} from '@angular/material/list';
 import {MatOption, MatSelect} from "@angular/material/select";
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { SignupConfirmationComponent } from './auth/signup-confirmation/signup-confirmation/signup-confirmation.component';
+import {AuthInterceptor} from "./auth/auth.interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
     DiscoverComponent,
-    AlbumDetailsComponent
+    AlbumDetailsComponent,
+    LoginComponent,
+    SignupComponent,
+    SignupConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,6 @@ import {MatOption, MatSelect} from "@angular/material/select";
     RouterModule,
     AdminModule,
     MatLabel,
-    MatToolbar,
     MatCard,
     MatFormField,
     MatChipGrid,
@@ -46,15 +52,14 @@ import {MatOption, MatSelect} from "@angular/material/select";
     MatCardImage,
     NgOptimizedImage,
     MatInput,
-    MatButton,
     MatList,
     MatListItem,
-    MatIconButton,
     MatSelect,
     MatOption
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

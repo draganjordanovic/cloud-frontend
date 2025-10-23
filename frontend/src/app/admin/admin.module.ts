@@ -16,11 +16,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CreateSongComponent } from './create-song/create-song.component';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { CreateAlbumComponent } from './create-album/create-album.component';
 
 
 
 @NgModule({
-  declarations: [AdminLayoutComponent, CreateArtistComponent, CreateSongComponent],
+  declarations: [AdminLayoutComponent, CreateArtistComponent, CreateSongComponent, CreateAlbumComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

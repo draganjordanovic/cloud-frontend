@@ -38,6 +38,8 @@ export const handler = async (event) => {
       const genres = song.genres || [];
       const description = song.description || "";
 
+      const primaryGenre = genres.length > 0 ? genres[0] : "UNKNOWN";
+
       const key = `${songId}-${fileName}`;
       const putCommand = new PutObjectCommand({
         Bucket: BUCKET,
@@ -59,7 +61,8 @@ export const handler = async (event) => {
         s3Key: { S: key },
         description: { S: description },
         artistIds: { SS: artistIds },
-        genres: { SS: genres }
+        genres: { SS: genres },
+        primaryGenre: { S: primaryGenre }
       };
 
       const dbCmd = new PutItemCommand({
