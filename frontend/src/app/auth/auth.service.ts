@@ -27,7 +27,7 @@ export class AuthService {
 
 
     resendConfirmationCode(username: string) {
-        return this.http.post(`${AUTH_ENDPOINT}/auth/resend-confirmation`, { username });
+        return this.http.post(`${AUTH_ENDPOINT}/resend-confirmation-code`, { username });
     }
 
 }
