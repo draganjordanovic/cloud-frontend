@@ -40,7 +40,8 @@ export class LoginComponent {
                 localStorage.setItem('accessToken', accessToken);
                 localStorage.setItem('refreshToken', refreshToken);
 
-                const payload = this.parseJwt(idToken);
+                const payload = this.parseJwt(accessToken);
+
                 const groups: string[] = payload['cognito:groups'] || [];
 
                 // role-based redirection
@@ -58,9 +59,24 @@ export class LoginComponent {
     }
 
 
+    safeDecodeBase64(str: string): string {
+        let output = str.replace(/-/g, '+').replace(/_/g, '/');
+
+        while (output.length % 4) {
+            output += '=';
+        }
+
+        return atob(output);
+    }
+
+
     parseJwt(token: string): any {
         try {
-            return JSON.parse(atob(token.split('.')[1]));
+            const base64Url = token.split('.')[1];
+
+            const jsonPayload = this.safeDecodeBase64(base64Url);
+
+            return JSON.parse(jsonPayload);
         } catch (e) {
             return null;
         }
