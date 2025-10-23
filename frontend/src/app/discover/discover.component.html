@@ -20,7 +20,7 @@
           <mat-option value="">All</mat-option>
           <mat-option value="ALBUM">Albums</mat-option>
           <mat-option value="ARTIST">Artists</mat-option>
-          <mat-option value="SONG">Songs</mat-option>
+         <!-- <mat-option value="SONG">Songs</mat-option> -->
         </mat-select>
       </mat-form-field>
     </div>
@@ -46,13 +46,13 @@
       <mat-card-content>
         <h3 class="music-card-title">{{ item.title || item.name }}</h3>
 
-        <!-- Song info -->
+        <!-- Song info
         <p *ngIf="item.type === 'song' && item.artistNames?.length">
           By {{ item.artistNames.join(', ') }}
         </p>
         <p *ngIf="item.type === 'song' && item.albumName">
           Album: {{ item.albumName }}
-        </p>
+        </p> -->
 
         <!-- Album info -->
         <p *ngIf="item.type === 'album' && item.artistNames?.length">

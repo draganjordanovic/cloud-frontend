@@ -4,6 +4,7 @@ import { AdminLayoutComponent } from './admin/admin-layout/admin-layout.componen
 import { CreateArtistComponent } from './admin/create-artist/create-artist.component';
 import { CreateSongComponent } from './admin/create-song/create-song.component';
 import {DiscoverComponent} from './discover/discover.component';
+import {AlbumDetailsComponent} from './album-details/album-details.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
     ]
   },
   { path: 'discover', component: DiscoverComponent },
+  { path: 'albums/:id', component: AlbumDetailsComponent },
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
   { path: '**', redirectTo: '/admin' }
 ];

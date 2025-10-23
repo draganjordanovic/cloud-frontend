@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { DiscoverService } from './discover.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-discover',
@@ -11,22 +11,20 @@ import {Router} from '@angular/router';
 export class DiscoverComponent {
 
   genreControl = new FormControl('');
-  filteredContent: any[] = [];
   typeControl = new FormControl('');
+  filteredContent: any[] = [];
 
-
-  constructor(private discoverService: DiscoverService, private router: Router) { }
-
+  constructor(private discoverService: DiscoverService, private router: Router) {}
   filterByGenre(): void {
     const genre = this.genreControl.value?.trim().toLowerCase();
-    let type = this.typeControl.value || '';
-    type = type.toLowerCase();
+    const type = (this.typeControl.value || '').toLowerCase();
     if (!genre) return;
 
     this.discoverService.getContentByGenre(genre, type).subscribe({
       next: (data) => {
-        console.log('Data from API:', data);
-        this.filteredContent = data.items || [];
+        const items = data.items || [];
+        console.log('Fetched items:', items);
+        this.filteredContent = items;
       },
       error: (err) => {
         console.error('Error fetching content:', err);
