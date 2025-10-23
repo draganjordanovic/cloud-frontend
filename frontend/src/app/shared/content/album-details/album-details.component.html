@@ -25,7 +25,7 @@
         <h4>{{ song.title }}</h4>
         <p class="genre">{{ song.primaryGenre || 'Unknown Genre' }}</p>
         <p class="details">
-          🎤 {{ song.artistIds.length ? song.artistIds.join(', ') : 'Unknown Artist' }}<br />
+          🎤 {{ song.artistNames?.length ? song.artistNames.join(', ') : 'Unknown Artist' }}<br />
           💾 {{ (song.fileSize / 1024 / 1024) | number:'1.1-2' }} MB
         </p>
       </div>

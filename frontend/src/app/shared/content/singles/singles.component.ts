@@ -43,6 +43,7 @@ export class SinglesComponent {
         });
 
         this.singles.push(...newSingles);
+        console.log(this.singles);
         this.nextCursor = res.nextCursor;
         this.loading = false;
       },

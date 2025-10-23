@@ -11,7 +11,7 @@
         <h3>{{ s.title }}</h3>
         <p class="genre">{{ s.primaryGenre || 'Unknown genre' }}</p>
         <p class="details">
-          <span>🎤 {{ s.artistIds.length ? s.artistIds.join(', ') : 'Unknown Artist' }}</span><br>
+          <span>🎤 {{ s.artists?.length ? s.artists.join(', ') : 'Unknown Artist' }}</span><br>
           <span>📅 {{ s.createdAt | date:'mediumDate' }}</span><br>
           <span>💾 {{ (s.fileSize / 1024 / 1024) | number:'1.1-2' }} MB</span>
         </p>

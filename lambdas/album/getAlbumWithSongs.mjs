@@ -1,4 +1,4 @@
-import { DynamoDBClient, GetItemCommand, QueryCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, GetItemCommand, QueryCommand, BatchGetItemCommand } from "@aws-sdk/client-dynamodb";
 const db = new DynamoDBClient({ region: "eu-central-1" });
 
 export const handler = async (event) => {
@@ -14,7 +14,11 @@ export const handler = async (event) => {
   }));
 
   if (!album || album.type?.S !== "album") {
-    return { statusCode: 404, headers: { "Access-Control-Allow-Origin": "*" }, body: JSON.stringify({ error: "Album not found" }) };
+    return {
+      statusCode: 404,
+      headers: { "Access-Control-Allow-Origin": "*" },
+      body: JSON.stringify({ error: "Album not found" })
+    };
   }
 
   const albumDto = {
@@ -35,12 +39,14 @@ export const handler = async (event) => {
     KeyConditionExpression: "#a = :aid",
     ExpressionAttributeNames: { "#a": "albumId" },
     ExpressionAttributeValues: { ":aid": { S: albumId } },
-    ProjectionExpression: "id, title, artistIds, createdAt, fileType, fileSize, imageKey, albumId, genres, primaryGenre",
+    ProjectionExpression:
+      "id, title, artistIds, createdAt, fileType, fileSize, imageKey, albumId, genres, primaryGenre",
     Limit: limit,
     ExclusiveStartKey: cursor
   };
 
   const { Items = [], LastEvaluatedKey } = await db.send(new QueryCommand(params));
+
   const songs = Items.map(i => ({
     id: i.id.S,
     title: i.title.S,
@@ -54,13 +60,44 @@ export const handler = async (event) => {
     primaryGenre: i.primaryGenre?.S ?? null
   }));
 
+  const allArtistIds = [...new Set(songs.flatMap(s => s.artistIds))];
+  let artistMap = {};
+
+  if (allArtistIds.length > 0) {
+    const keys = allArtistIds.map(id => ({ id: { S: id } }));
+
+    const batchResp = await db.send(
+      new BatchGetItemCommand({
+        RequestItems: {
+          MusicMetadata: {
+            Keys: keys,
+            ProjectionExpression: "id, #n",
+            ExpressionAttributeNames: { "#n": "name" }
+          }
+        }
+      })
+    );
+
+    const artists = batchResp.Responses?.MusicMetadata ?? [];
+    artists.forEach(a => {
+      artistMap[a.id.S] = a.name?.S ?? "Unknown Artist";
+    });
+  }
+
+  const songsWithArtistNames = songs.map(s => ({
+    ...s,
+    artistNames: s.artistIds.map(id => artistMap[id] ?? "Unknown Artist")
+  }));
+
   return {
     statusCode: 200,
     headers: { "Access-Control-Allow-Origin": "*" },
     body: JSON.stringify({
       album: albumDto,
-      songs,
-      nextCursor: LastEvaluatedKey ? encodeURIComponent(JSON.stringify(LastEvaluatedKey)) : null
+      songs: songsWithArtistNames,
+      nextCursor: LastEvaluatedKey
+        ? encodeURIComponent(JSON.stringify(LastEvaluatedKey))
+        : null
     })
   };
 };
