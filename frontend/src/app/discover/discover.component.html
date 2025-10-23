@@ -30,6 +30,12 @@
     </button>
   </mat-card>
 
+  <div *ngIf="filteredContent.length === 0" class="no-content-page">
+    <div class="no-content-message">
+      <h2>🎵 No content available</h2>
+      <p>Try adjusting the genre or type filter to see some music.</p>
+    </div>
+  </div>
   <!-- Content grid -->
   <div class="content-list">
     <mat-card class="music-card"
@@ -45,14 +51,6 @@
 
       <mat-card-content>
         <h3 class="music-card-title">{{ item.title || item.name }}</h3>
-
-        <!-- Song info
-        <p *ngIf="item.type === 'song' && item.artistNames?.length">
-          By {{ item.artistNames.join(', ') }}
-        </p>
-        <p *ngIf="item.type === 'song' && item.albumName">
-          Album: {{ item.albumName }}
-        </p> -->
 
         <!-- Album info -->
         <p *ngIf="item.type === 'album' && item.artistNames?.length">

@@ -3,8 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import {MatToolbar, MatToolbarModule} from '@angular/material/toolbar';
+import {MatButton, MatButtonModule} from '@angular/material/button';
 import {HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -55,7 +55,9 @@ import {AuthInterceptor} from "./auth/auth.interceptor";
     MatList,
     MatListItem,
     MatSelect,
-    MatOption
+    MatOption,
+    MatButton,
+    MatToolbar
   ],
   providers: [
     provideAnimationsAsync(),

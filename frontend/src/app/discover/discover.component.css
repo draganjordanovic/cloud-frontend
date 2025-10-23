@@ -62,6 +62,35 @@
 .full-width {
   width: 100%;
 }
+.no-content-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+  padding: 0;
+
+}
+
+.no-content-message {
+  text-align: center;
+  max-width: 600px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.no-content-message h2 {
+  font-size: 2rem;
+  color: #3f51b5;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.no-content-message p {
+  font-size: 1.2rem;
+  color: rgba(0,0,0,0.7);
+}
 
 .discover-page {
   display: flex;
