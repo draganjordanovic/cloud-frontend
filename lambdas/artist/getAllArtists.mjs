@@ -1,8 +1,16 @@
 import { DynamoDBClient, QueryCommand } from "@aws-sdk/client-dynamodb";
 
+import { checkRole, getForbiddenResponse } from '/opt/nodejs/roleChecker.mjs';
 const client = new DynamoDBClient({ region: "eu-central-1" });
 
-export const handler = async () => {
+export const handler = async (event, context) => {
+  const claims = event.requestContext.authorizer.claims;
+  const requiredRoles = ['Admin'];
+
+  if (!checkRole(requiredRoles, claims)) {
+    return getForbiddenResponse();
+  }
+
   try {
     const command = new QueryCommand({
       TableName: "MusicMetadata",

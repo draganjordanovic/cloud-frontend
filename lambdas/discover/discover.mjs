@@ -3,6 +3,9 @@ import { DynamoDBDocumentClient, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
+import { checkRole, getForbiddenResponse } from '/opt/nodejs/roleChecker.mjs';
+
+
 const client = new DynamoDB({});
 const dynamo = DynamoDBDocumentClient.from(client);
 const s3 = new S3Client({ region: "eu-central-1" });
@@ -12,6 +15,13 @@ const GSI_NAME = process.env.GSI_NAME;
 const BUCKET_NAME = process.env.BUCKET_NAME;
 
 export const handler = async (event) => {
+    const claims = event.requestContext.authorizer.claims;
+    const requiredRoles = ['Regular'];
+
+    if (!checkRole(requiredRoles, claims)) {
+        return getForbiddenResponse();
+    }
+
     try {
         const genre = event.queryStringParameters?.genre;
         const type = (event.queryStringParameters?.type || "").toLowerCase();
@@ -86,7 +96,10 @@ export const handler = async (event) => {
 
         return {
             statusCode: 200,
-            headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+                "Access-Control-Allow-Methods": "OPTIONS,GET" },
             body: JSON.stringify({ items: out }),
         };
 
@@ -94,7 +107,10 @@ export const handler = async (event) => {
         console.error("Lambda error:", err);
         return {
             statusCode: 500,
-            headers: { "Access-Control-Allow-Origin": "*" },
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "Content-Type,Authorization",
+                "Access-Control-Allow-Methods": "OPTIONS,GET" },
             body: JSON.stringify({ error: err.message }),
         };
     }
