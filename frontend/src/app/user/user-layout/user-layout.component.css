@@ -15,8 +15,8 @@
 .spacer {
   flex: 1 1 auto;
 }
-mat-button {
-  color: #fff;
+.user-toolbar button[mat-button] {
+  color: #fff !important;
   font-weight: 500;
   transition: background 0.2s;
 }
