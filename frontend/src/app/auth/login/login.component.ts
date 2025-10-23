@@ -47,7 +47,7 @@ export class LoginComponent {
                 if (groups.includes('Admin')) {
                     this.router.navigate(['/admin/artists']);
                 } else {
-                    this.router.navigate(['/admin/upload-music']);
+                    this.router.navigate(['/user/discover']);
                 }
             },
             error: (err) => {
