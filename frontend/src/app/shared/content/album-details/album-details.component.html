@@ -1,8 +1,5 @@
 <div class="album-details-container" *ngIf="album">
   <div class="album-header">
-    <div class="album-cover">
-      <img [src]="album.coverUrl || 'assets/default-cover.jpg'" alt="{{ album.title }}" />
-    </div>
 
     <div class="album-meta">
       <h2>{{ album.title }}</h2>
@@ -17,9 +14,6 @@
 
   <div class="songs-grid">
     <div *ngFor="let song of songs" class="song-card">
-      <div class="song-cover">
-        <img [src]="song.coverUrl || 'assets/default-cover.jpg'" alt="{{ song.title }}">
-      </div>
 
       <div class="song-info">
         <h4>{{ song.title }}</h4>

@@ -3,9 +3,6 @@
 
   <div class="album-grid">
     <div *ngFor="let album of albums" class="album-card" (click)="openAlbum(album.id)">
-      <div class="album-cover">
-        <img [src]="album.coverUrl || 'assets/default-cover.jpg'" alt="{{ album.title }}">
-      </div>
       <div class="album-info">
         <h3>{{ album.title }}</h3>
         <p>{{ album.primaryGenre || 'Unknown Genre' }}</p>
