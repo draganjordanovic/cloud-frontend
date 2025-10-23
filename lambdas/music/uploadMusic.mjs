@@ -1,6 +1,8 @@
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import { checkRole, getForbiddenResponse } from '/opt/nodejs/roleChecker.mjs';
+
 
 const region = "eu-central-1";
 const s3 = new S3Client({ region });
@@ -8,6 +10,14 @@ const dynamo = new DynamoDBClient({ region });
 const BUCKET = "music-content-bucket";
 
 export const handler = async (event) => {
+  const claims = event.requestContext.authorizer.claims;
+  const requiredRoles = ['Admin'];
+
+  if (!checkRole(requiredRoles, claims)) {
+    return getForbiddenResponse();
+  }
+
+
   try {
     const body = JSON.parse(event.body);
 
@@ -83,7 +93,7 @@ export const handler = async (event) => {
         message: "Upload URL(s) generated successfully",
         songId,
         uploadUrl,
-        imageUploadUrl 
+        imageUploadUrl
       })
     };
 

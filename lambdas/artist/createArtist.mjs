@@ -1,8 +1,18 @@
 import { DynamoDBClient, PutItemCommand } from "@aws-sdk/client-dynamodb";
 
+
+import { checkRole, getForbiddenResponse } from '/opt/nodejs/roleChecker.mjs';
+
 const client = new DynamoDBClient({ region: "eu-central-1" });
 
 export const handler = async (event) => {
+  const claims = event.requestContext.authorizer.claims;
+  const requiredRoles = ['Admin'];
+
+  if (!checkRole(requiredRoles, claims)) {
+    return getForbiddenResponse();
+  }
+
   try {
     const body = JSON.parse(event.body);
 
