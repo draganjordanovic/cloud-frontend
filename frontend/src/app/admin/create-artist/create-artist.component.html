@@ -1,0 +1,41 @@
+<mat-card class="artist-card">
+  <h2 class="card-title">Add New Artist</h2>
+
+  <form [formGroup]="artistForm" (ngSubmit)="onSubmit()" class="artist-form">
+    <div class="loading-overlay" *ngIf="isLoading">
+      <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+    </div>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Artist Name</mat-label>
+      <input matInput formControlName="name" placeholder="e.g. Taylor Swift" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Biography</mat-label>
+      <textarea matInput formControlName="bio" placeholder="Short artist bio..." rows="4"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="full-width" formGroupName="genres" required>
+      <mat-label>Genres</mat-label>
+      <mat-chip-grid #chipGrid [formControl]="genresControl">
+        <mat-chip-row *ngFor="let genre of artistForm.get('genres')?.value" (removed)="removeGenre(genre)">
+          {{ genre }}
+          <button matChipRemove aria-label="Remove genre">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+
+        <input placeholder="Press Enter to add genre" [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="addGenre($event)" />
+      </mat-chip-grid>
+
+      <mat-error *ngIf="artistForm.get('genres')?.hasError('required') && artistForm.get('genres')?.touched">
+        At least one genre is required.
+      </mat-error>
+    </mat-form-field>
+
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="isLoading">
+      {{ isLoading ? 'Saving...' : 'Save Artist' }}
+    </button>
+  </form>
+</mat-card>

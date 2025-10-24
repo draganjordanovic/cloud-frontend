@@ -1,0 +1,54 @@
+<div class="album-details-container" *ngIf="album">
+  <div class="album-header">
+
+    <div class="album-meta">
+      <h2>{{ album.title }}</h2>
+      <p class="description">{{ album.description || 'No description available.' }}</p>
+      <p><b>Genre:</b> {{ album.primaryGenre || 'Unknown Genre' }}</p>
+      <p><b>Release Year:</b> {{ album.releaseYear }}</p>
+      <p><b>Song Count:</b> {{ album.songCount }}</p>
+    </div>
+  </div>
+
+  <h3 class="songs-title">Songs</h3>
+
+  <div class="songs-grid">
+    <div *ngFor="let song of songs" class="song-card">
+
+      <div class="song-info">
+        <h4>{{ song.title }}</h4>
+        <p class="genre">{{ song.primaryGenre || 'Unknown Genre' }}</p>
+        <p class="details">
+          🎤 {{ song.artistNames?.length ? song.artistNames.join(', ') : 'Unknown Artist' }}<br />
+          📅 {{ song.createdAt | date:'mediumDate' }}<br />
+          💾 {{ (song.fileSize / 1024 / 1024) | number:'1.1-2' }} MB<br />
+        </p>
+      </div>
+
+      <div class="song-actions">
+        <button (click)="playSong(song.id)">
+          ▶ Play
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mini-player" *ngIf="currentSong">
+  <div class="mini-player-info">
+    <img [src]="currentSong.coverUrl || 'assets/default-cover.jpg'" alt="Cover" class="mini-cover" />
+    <div class="song-details">
+      <h4>{{ currentSong.title }}</h4>
+      <p>{{ currentSong.primaryGenre || 'Unknown Genre' }}</p>
+    </div>
+  </div>
+
+  <div class="mini-player-controls">
+    <button (click)="togglePlay()">
+      {{ isPlaying ? '⏸ Pause' : '▶ Play' }}
+    </button>
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="progress"></div>
+    </div>
+  </div>
+</div>

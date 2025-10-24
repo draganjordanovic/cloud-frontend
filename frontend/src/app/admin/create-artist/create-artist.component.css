@@ -1,0 +1,65 @@
+.artist-card {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.card-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  color: #3f51b5;
+  letter-spacing: 0.5px;
+}
+
+.artist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.6rem 0;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+mat-chip-row {
+  background-color: rgba(63, 81, 181, 0.7) !important;
+  color: white;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 4px 10px;
+}
+
+
+button[matChipRemove] {
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 4px;
+}
+
+button[matChipRemove]:hover {
+  color: white;
+}
+
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 10;
+}
+
+.artist-card {
+  position: relative;
+}

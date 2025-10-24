@@ -1,0 +1,30 @@
+<div class="artist-view-container" *ngIf="!loading && !error">
+  <header class="artist-header">
+    <h1 class="artist-title">🎤 {{ artistName || 'Artist' }} - Albums</h1>
+    <p class="artist-subtitle" *ngIf="artistBio">{{ artistBio }}</p>
+  </header>
+
+  <div *ngIf="albums.length === 0" class="no-albums">
+    <h2>🎵 No albums found</h2>
+    <p>This artist doesn’t have any albums yet.</p>
+  </div>
+
+  <div class="albums-grid" *ngIf="albums.length > 0">
+    <mat-card class="album-card" *ngFor="let album of albums" (click)="openAlbum(album)">
+      <mat-card-content class="album-info">
+        <h3 class="album-title">{{ album.title }}</h3>
+        <p *ngIf="album.releaseYear"><strong>Year:</strong> {{ album.releaseYear }}</p>
+        <p *ngIf="album.genres?.length"><strong>Genres:</strong> {{ album.genres.join(', ') }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div class="loading-container" *ngIf="loading">
+  <mat-spinner diameter="50"></mat-spinner>
+  <p>Loading albums...</p>
+</div>
+
+<div class="error-container" *ngIf="error && !loading">
+  <p>⚠️ {{ error }}</p>
+</div>

@@ -1,0 +1,25 @@
+<div class="auth-background">
+    <div class="auth-card">
+        <h2 class="form-title">Sign up confirmation</h2>
+
+        <form [formGroup]="confirmForm" (ngSubmit)="onSubmit()">
+            <div class="form-field">
+                <label>Username</label>
+                <input type="text" formControlName="username" readonly />
+            </div>
+
+            <div class="form-field">
+                <label>Confirmation code</label>
+                <input type="text" formControlName="code" required />
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="confirmForm.invalid">
+                Confirm
+            </button>
+
+            <p class="redirect">
+                Didn't receive a code? <a (click)="resendCode()">Resend</a>
+            </p>
+        </form>
+    </div>
+</div>

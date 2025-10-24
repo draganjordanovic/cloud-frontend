@@ -1,0 +1,25 @@
+<div class="auth-background">
+    <div class="auth-card">
+        <h2 class="form-title">Login</h2>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-field">
+                <label>Username</label>
+                <input type="text" formControlName="username" required />
+            </div>
+
+            <div class="form-field">
+                <label>Password</label>
+                <input type="password" formControlName="password" required />
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="loginForm.invalid">
+                Login
+            </button>
+
+            <p class="redirect">
+                Don't have an account? <a routerLink="/sign-up">Sign Up</a>
+            </p>
+        </form>
+    </div>
+</div>

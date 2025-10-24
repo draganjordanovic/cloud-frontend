@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="admin-toolbar">
+  <span class="app-title">🎵 Cloud Music Admin</span>
+  <span class="spacer"></span>
+
+  <a mat-button routerLink="/admin/artists" routerLinkActive="active-link">Artists</a>
+  <a mat-button routerLink="/admin/upload-music" routerLinkActive="active-link">Upload Song</a>
+  <a mat-button routerLink="/admin/upload-album" routerLinkActive="active-link">Upload Album</a>
+  <a mat-button routerLink="/admin/albums" routerLinkActive="active-link">Albums</a>
+  <a mat-button routerLink="/admin/songs" routerLinkActive="active-link">Songs</a>
+
+    <button mat-button (click)="logout()" >Logout</button>
+</mat-toolbar>
+
+<div class="admin-container">
+  <router-outlet></router-outlet>
+</div>
