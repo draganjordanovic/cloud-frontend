@@ -34,7 +34,14 @@ export class DiscoverComponent {
 
   openAlbumDetails(item: any) {
     if (item.type === 'album') {
-      this.router.navigate(['/user/albums', item.id]);
+      this.router.navigate(['/user/album', item.id]);
     }
   }
+
+  openArtistDetails(item: any) {
+    if (item.type === 'artist') {
+      this.router.navigate(['/user/artists', item.id]);
+    }
+  }
+
 }

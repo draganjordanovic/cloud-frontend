@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ALBUM_ENDPOINT, SONG_ENDPOINT } from '../app.constants';
+import {ALBUM_ENDPOINT, ARTIST_ENDPOINT, SONG_ENDPOINT} from '../app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +10,7 @@ export class MusicService {
 
   private albumsUrl = ALBUM_ENDPOINT
   private songsUrl = SONG_ENDPOINT
+  private artistsUrl = ARTIST_ENDPOINT
 
   constructor(private http: HttpClient) { }
 
@@ -38,4 +39,9 @@ export class MusicService {
   getSongCoverUrl(id: string): Observable<any> {
     return this.http.get(`${this.songsUrl}/${id}/cover-url`);
   }
+
+  getArtistAlbums(artistId: string): Observable<any> {
+    return this.http.get(`${this.artistsUrl}/${artistId}/albums`);
+  }
+
 }

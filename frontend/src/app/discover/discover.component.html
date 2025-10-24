@@ -52,7 +52,7 @@
     <mat-card
       class="music-card"
       *ngFor="let item of filteredContent"
-      (click)="openAlbumDetails(item)"
+      (click)="item.type === 'album' ? openAlbumDetails(item) : openArtistDetails(item)"
     >
       <div class="music-card-image-container">
         <img

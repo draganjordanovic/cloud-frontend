@@ -26,6 +26,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { SignupConfirmationComponent } from './auth/signup-confirmation/signup-confirmation/signup-confirmation.component';
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import { UserLayoutComponent } from './user/user-layout/user-layout.component';
+import { ArtistViewComponent } from './shared/artist-view/artist-view.component';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     LoginComponent,
     SignupComponent,
     SignupConfirmationComponent,
-    UserLayoutComponent
+    UserLayoutComponent,
+    ArtistViewComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { UserLayoutComponent } from './user/user-layout/user-layout.component';
     MatOption,
     MatButton,
     MatToolbar,
-    MatAnchor
+    MatAnchor,
+    MatProgressSpinner
   ],
   providers: [
     provideAnimationsAsync(),
