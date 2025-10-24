@@ -1,0 +1,3 @@
+# for getArtistContent
+GSI_NAME = type-index
+TABLE_NAME = MusicMetadata
