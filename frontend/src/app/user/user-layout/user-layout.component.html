@@ -6,7 +6,7 @@
   <a mat-button routerLink="/user/albums" routerLinkActive="active-link">Albums</a>
   <a mat-button routerLink="/user/songs" routerLinkActive="active-link">Songs</a>
 
-  <button mat-button >Logout</button>
+  <button mat-button (click)="logout()" >Logout</button>
 </mat-toolbar>
 
 <div class="user-container">
