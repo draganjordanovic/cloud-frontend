@@ -15,6 +15,7 @@ import { SinglesComponent } from './shared/content/singles/singles.component';
 import {UserLayoutComponent} from './user/user-layout/user-layout.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { AlbumViewComponent } from './shared/content/album-details/album-view.component';
+import {ArtistViewComponent} from './shared/artist-view/artist-view.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -38,10 +39,10 @@ const routes: Routes = [
     component: UserLayoutComponent,
     children: [
       { path: 'discover', component: DiscoverComponent },
-      { path: 'albums/:id', component: AlbumDetailsComponent },
       { path: 'albums', component: AlbumsComponent },
       { path: 'songs', component: SinglesComponent },
-      { path: 'album/:id', component: AlbumViewComponent }
+      { path: 'album/:id', component: AlbumViewComponent },
+      { path: 'artists/:id', component: ArtistViewComponent },
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
