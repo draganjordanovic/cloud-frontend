@@ -41,7 +41,7 @@ const routes: Routes = [
       { path: 'albums/:id', component: AlbumDetailsComponent },
       { path: 'albums', component: AlbumsComponent },
       { path: 'songs', component: SinglesComponent },
-      { path: 'albums/:id', component: AlbumViewComponent }
+      { path: 'album/:id', component: AlbumViewComponent }
     ]
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
